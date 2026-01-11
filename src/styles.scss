@@ -1,1 +1,106 @@
 /* You can add global styles to this file, and also import other style files */
+/* Importer PrimeNG et PrimeFlex */
+@import "primeng/resources/themes/lara-light-pink/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+
+/* Variables de couleurs personnalisées - Thème Rose BBS */
+:root {
+    --primary-color: #ec4899;
+    /* Rose principal */
+    --primary-dark: #db2777;
+    --primary-light: #fbcfe8;
+    --secondary-color: #8b5cf6;
+    /* Violet secondaire */
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --text-color: #1f2937;
+    --surface-ground: #f9fafb;
+    --surface-card: #ffffff;
+}
+
+/* Reset et styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+/* Surcharges PrimeNG pour le thème rose */
+.p-button {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+
+    &:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+}
+
+.p-inputtext:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(236, 72, 153, 0.25);
+}
+
+/* Classes utilitaires personnalisées */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 450px;
+    width: 100%;
+    padding: 2.5rem;
+}
+
+.logo-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #6b7280;
+    text-align: center;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
