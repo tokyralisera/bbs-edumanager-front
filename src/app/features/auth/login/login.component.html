@@ -1,1 +1,61 @@
-<p>login works!</p>
+<div class="login-container">
+  <p-card class="login-card">
+    <!-- En-tête -->
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <h1 class="title">BBS EduManager</h1>
+        <p class="subtitle">Connectez-vous à votre compte</p>
+      </div>
+    </ng-template>
+
+    <!-- Contenu -->
+    <div class="card-content">
+      <!-- Message d'erreur -->
+      <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage"
+        [style]="{ width: '100%', marginBottom: '1.5rem' }">
+      </p-message>
+
+      <!-- Formulaire -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!-- Champ Email -->
+        <div class="field">
+          <label for="email">Email</label>
+          <span class="p-input-icon-left" style="width: 100%;">
+            <i class="pi pi-envelope"></i>
+            <input pInputText id="email" formControlName="email" placeholder="votre.email@bbs.edu"
+              [class.ng-invalid]="email?.invalid && email?.touched" [class.ng-dirty]="email?.touched"
+              style="width: 100%;" />
+          </span>
+          <small *ngIf="email?.invalid && email?.touched" class="error-message">
+            <span *ngIf="email?.errors?.['required']">L'email est obligatoire</span>
+            <span *ngIf="email?.errors?.['email']">Email invalide</span>
+          </small>
+        </div>
+
+        <!-- Champ Mot de passe -->
+        <div class="field">
+          <label for="password">Mot de passe</label>
+          <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="false"
+            placeholder="••••••••" [style]="{ width: '100%' }" [inputStyle]="{ width: '100%' }"
+            [class.ng-invalid]="password?.invalid && password?.touched" [class.ng-dirty]="password?.touched">
+          </p-password>
+          <small *ngIf="password?.invalid && password?.touched" class="error-message">
+            <span *ngIf="password?.errors?.['required']">Le mot de passe est obligatoire</span>
+            <span *ngIf="password?.errors?.['minlength']">Minimum 6 caractères</span>
+          </small>
+        </div>
+
+        <!-- Bouton de connexion -->
+        <p-button type="submit" label="Se connecter" icon="pi pi-sign-in" [loading]="loading" [disabled]="loading"
+          [style]="{ width: '100%', marginBottom: '1rem' }">
+        </p-button>
+
+        <!-- Lien vers inscription -->
+        <div class="text-center">
+          <span class="link-text">Pas encore de compte ? </span>
+          <a routerLink="/auth/register" class="link">S'inscrire</a>
+        </div>
+      </form>
+    </div>
+  </p-card>
+</div>

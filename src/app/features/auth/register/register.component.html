@@ -1,1 +1,114 @@
-<p>register works!</p>
+<div class="register-container">
+  <p-card class="register-card">
+    <!-- En-tête -->
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <h1 class="title">BBS EduManager</h1>
+        <p class="subtitle">Créez votre compte</p>
+      </div>
+    </ng-template>
+
+    <!-- Contenu -->
+    <div class="card-content">
+      <!-- Messages -->
+      <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage"
+        [style]="{ width: '100%', marginBottom: '1.5rem' }">
+      </p-message>
+
+      <p-message *ngIf="successMessage" severity="success" [text]="successMessage"
+        [style]="{ width: '100%', marginBottom: '1.5rem' }">
+      </p-message>
+
+      <!-- Formulaire -->
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- Prénom et Nom -->
+        <div class="field-row">
+          <div class="field field-half">
+            <label for="first_name">Prénom</label>
+            <input pInputText id="first_name" formControlName="first_name" placeholder="Jean"
+              [class.ng-invalid]="first_name?.invalid && first_name?.touched" [class.ng-dirty]="first_name?.touched"
+              style="width: 100%;" />
+            <small *ngIf="first_name?.invalid && first_name?.touched" class="error-message">
+              Prénom obligatoire (min. 2 caractères)
+            </small>
+          </div>
+
+          <div class="field field-half">
+            <label for="last_name">Nom</label>
+            <input pInputText id="last_name" formControlName="last_name" placeholder="Dupont"
+              [class.ng-invalid]="last_name?.invalid && last_name?.touched" [class.ng-dirty]="last_name?.touched"
+              style="width: 100%;" />
+            <small *ngIf="last_name?.invalid && last_name?.touched" class="error-message">
+              Nom obligatoire (min. 2 caractères)
+            </small>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <label for="email">Email</label>
+          <span class="p-input-icon-left" style="width: 100%;">
+            <i class="pi pi-envelope"></i>
+            <input pInputText id="email" formControlName="email" placeholder="votre.email@bbs.edu"
+              [class.ng-invalid]="email?.invalid && email?.touched" [class.ng-dirty]="email?.touched"
+              style="width: 100%;" />
+          </span>
+          <small *ngIf="email?.invalid && email?.touched" class="error-message">
+            <span *ngIf="email?.errors?.['required']">L'email est obligatoire</span>
+            <span *ngIf="email?.errors?.['email']">Email invalide</span>
+          </small>
+        </div>
+
+        <!-- Rôle -->
+        <div class="field">
+          <label for="role">Rôle</label>
+          <p-dropdown id="role" formControlName="role" [options]="roles" placeholder="Sélectionnez un rôle"
+            [style]="{ width: '100%' }" [class.ng-invalid]="role?.invalid && role?.touched">
+          </p-dropdown>
+          <small *ngIf="role?.invalid && role?.touched" class="error-message">
+            Le rôle est obligatoire
+          </small>
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="field">
+          <label for="password">Mot de passe</label>
+          <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="true"
+            placeholder="••••••••" [style]="{ width: '100%' }" [inputStyle]="{ width: '100%' }"
+            [class.ng-invalid]="password?.invalid && password?.touched" [class.ng-dirty]="password?.touched">
+          </p-password>
+          <small *ngIf="password?.invalid && password?.touched" class="error-message">
+            <span *ngIf="password?.errors?.['required']">Le mot de passe est obligatoire</span>
+            <span *ngIf="password?.errors?.['minlength']">Minimum 6 caractères</span>
+          </small>
+        </div>
+
+        <!-- Confirmation mot de passe -->
+        <div class="field">
+          <label for="password2">Confirmer le mot de passe</label>
+          <p-password id="password2" formControlName="password2" [toggleMask]="true" [feedback]="false"
+            placeholder="••••••••" [style]="{ width: '100%' }" [inputStyle]="{ width: '100%' }"
+            [class.ng-invalid]="password2?.invalid && password2?.touched" [class.ng-dirty]="password2?.touched">
+          </p-password>
+          <small *ngIf="password2?.invalid && password2?.touched" class="error-message">
+            <span *ngIf="password2?.errors?.['required']">La confirmation est obligatoire</span>
+            <span *ngIf="password2?.errors?.['passwordMismatch']">
+              Les mots de passe ne correspondent pas
+            </span>
+          </small>
+        </div>
+
+        <!-- Bouton d'inscription -->
+        <p-button type="submit" label="S'inscrire" icon="pi pi-user-plus" [loading]="loading" [disabled]="loading"
+          [style]="{ width: '100%', marginBottom: '1rem' }">
+        </p-button>
+
+        <!-- Lien vers connexion -->
+        <div class="text-center">
+          <span class="link-text">Déjà un compte ? </span>
+          <a routerLink="/auth/login" class="link">Se connecter</a>
+        </div>
+      </form>
+    </div>
+  </p-card>
+</div>
