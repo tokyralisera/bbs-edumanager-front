@@ -1,0 +1,109 @@
+<div class="dashboard-home">
+    <!-- En-tête de bienvenue -->
+    <div class="welcome-section">
+        <h1 class="page-title">
+            {{ getGreeting() }}, {{ currentUser?.first_name }}
+        </h1>
+        <p class="page-subtitle">
+            Voici un aperçu de l'activité de l' établissement
+        </p>
+    </div>
+
+    <!-- Cartes de statistiques -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #ec4899;">
+                <i class="pi pi-users"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ stats.totalStudents }}</div>
+                <div class="stat-label">Étudiants inscrits</div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #10b981;">
+                <i class="pi pi-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ stats.activeStudents }}</div>
+                <div class="stat-label">Étudiants actifs</div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #8b5cf6;">
+                <i class="pi pi-user"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ stats.totalUsers }}</div>
+                <div class="stat-label">Utilisateurs</div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #f59e0b;">
+                <i class="pi pi-user-plus"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ stats.newEnrollments }}</div>
+                <div class="stat-label">Nouvelles inscriptions</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphique et informations -->
+    <div class="content-grid">
+        <!-- Graphique d'évolution -->
+        <p-card class="chart-card">
+            <ng-template pTemplate="header">
+                <div class="card-header">
+                    <h3>Évolution des inscriptions</h3>
+                </div>
+            </ng-template>
+
+            <div class="chart-container">
+                <p-chart type="line" [data]="chartData" [options]="chartOptions"
+                    [style]="{ width: '100%', height: '300px' }">
+                </p-chart>
+            </div>
+        </p-card>
+
+        <!-- Actions rapides -->
+        <p-card class="actions-card">
+            <ng-template pTemplate="header">
+                <div class="card-header">
+                    <h3>Actions rapides</h3>
+                </div>
+            </ng-template>
+
+            <div class="quick-actions">
+                <p-button label="Nouvel étudiant" icon="pi pi-user-plus" styleClass="p-button-outlined w-full mb-3"
+                    severity="help">
+                </p-button>
+
+                <p-button label="Nouvelle inscription" icon="pi pi-file-plus" styleClass="p-button-outlined w-full mb-3"
+                    severity="success">
+                </p-button>
+
+                <p-button label="Rapports" icon="pi pi-chart-bar" styleClass="p-button-outlined w-full" severity="info">
+                </p-button>
+            </div>
+        </p-card>
+    </div>
+
+    <!-- Informations supplémentaires -->
+    <p-card class="info-card">
+        <ng-template pTemplate="header">
+            <div class="card-header">
+                <h3>Activités récentes</h3>
+            </div>
+        </ng-template>
+
+        <div class="empty-state">
+            <i class="pi pi-inbox" style="font-size: 3rem; color: #9ca3af;"></i>
+            <p>Aucune activité récente pour le moment</p>
+            <small>Les activités apparaîtront ici au fur et à mesure</small>
+        </div>
+    </p-card>
+</div>

@@ -1,0 +1,71 @@
+<div class="dashboard-layout">
+    <!-- Sidebar -->
+    <div class="sidebar" [class.collapsed]="!sidebarVisible">
+        <!-- Logo et titre -->
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="pi pi-graduation-cap"></i>
+            </div>
+            <h2 class="app-title" *ngIf="sidebarVisible">BBS EduManager</h2>
+        </div>
+
+        <!-- Menu de navigation -->
+        <nav class="sidebar-nav">
+            <ul class="menu-list">
+                <li *ngFor="let item of menuItems" [class.menu-separator]="item.separator"
+                    [hidden]="item.visible === false">
+                    <a *ngIf="!item.separator" [routerLink]="item.routerLink" routerLinkActive="active"
+                        class="menu-item" pRipple [pTooltip]="!sidebarVisible ? item.label : ''"
+                        tooltipPosition="right">
+                        <i [class]="item.icon"></i>
+                        <span *ngIf="sidebarVisible" class="menu-label">{{ item.label }}</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- User section en bas -->
+        <div class="sidebar-footer">
+            <!-- Profil utilisateur -->
+            <div class="user-profile" *ngIf="currentUser">
+                <div class="user-avatar">
+                    <p-avatar [label]="getInitials()" shape="circle"
+                        [style]="{ 'background-color': '#ec4899', 'color': '#ffffff' }">
+                    </p-avatar>
+                </div>
+                <div class="user-info" *ngIf="sidebarVisible">
+                    <div class="user-name">{{ currentUser.first_name }} {{ currentUser.last_name }}</div>
+                    <div class="user-role">{{ getRoleBadge() }}</div>
+                </div>
+            </div>
+
+            <!-- Boutons d'action -->
+            <div class="action-buttons">
+                <p-button icon="pi pi-sign-out" [label]="sidebarVisible ? 'Déconnexion' : ''" severity="danger"
+                    [text]="true" (onClick)="logout()"
+                    [style]="{ width: '100%', justifyContent: sidebarVisible ? 'flex-start' : 'center' }"
+                    [pTooltip]="!sidebarVisible ? 'Déconnexion' : ''" tooltipPosition="right">
+                </p-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content" [class.expanded]="!sidebarVisible">
+        <!-- Topbar -->
+        <header class="topbar">
+            <p-button icon="pi pi-bars" [text]="true" [rounded]="true" (onClick)="toggleSidebar()">
+            </p-button>
+
+            <div class="topbar-actions">
+                <p-button icon="pi pi-bell" [text]="true" [rounded]="true" [badge]="'3'" badgeSeverity="danger">
+                </p-button>
+            </div>
+        </header>
+
+        <!-- Content area -->
+        <main class="content">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>

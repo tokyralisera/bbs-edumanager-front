@@ -1,0 +1,184 @@
+.dashboard-home {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.welcome-section {
+    margin-bottom: 2rem;
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 1rem;
+        margin: 0;
+    }
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .stat-content {
+        flex: 1;
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+    }
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+
+    h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1f2937;
+    }
+}
+
+.chart-card {
+    ::ng-deep .p-card-body {
+        padding: 0;
+    }
+
+    ::ng-deep .p-card-content {
+        padding: 1.5rem;
+    }
+
+    .chart-container {
+        padding: 1rem 0;
+    }
+}
+
+.actions-card {
+    ::ng-deep .p-card-body {
+        padding: 0;
+    }
+
+    ::ng-deep .p-card-content {
+        padding: 1.5rem;
+    }
+
+    .quick-actions {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.info-card {
+    ::ng-deep .p-card-body {
+        padding: 0;
+    }
+
+    ::ng-deep .p-card-content {
+        padding: 1.5rem;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: #6b7280;
+
+        i {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        small {
+            color: #9ca3af;
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-section {
+        .page-title {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+// Surcharges PrimeNG
+::ng-deep {
+    .p-card {
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .p-button {
+        font-weight: 500;
+    }
+}
